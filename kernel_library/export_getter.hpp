@@ -24,7 +24,7 @@ namespace impl
 	struct export_fn
 	{
 		/* summary: walk the export directory of the module, return the export hash that matches the supplied hash */
-		T get_fn( )
+		__forceinline T get_fn( )
 		{
 			static const auto kernel_module_data = nt_find_module( "ntoskrnl.exe" );
 
@@ -54,7 +54,7 @@ namespace impl
 
 		/* summary: call the function */
 		template <typename... Args>
-		decltype( auto ) operator( )( Args&& ...Arguments )
+		__forceinline decltype( auto ) operator( )( Args&& ...Arguments )
 		{
 			return get_fn( )( std::forward< Args >( Arguments )... );
 		}
