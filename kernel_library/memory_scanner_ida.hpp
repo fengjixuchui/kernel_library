@@ -71,13 +71,13 @@ namespace impl
 	};
 
 	template<typename mask>
-	constexpr uint8_t* scan_for_pattern_ida( nt::rtl_module_info* module_info )
+	constexpr uint8_t* scan_for_pattern_ida( nt::rtl_module_info module_info )
 	{
 		if ( !module_info )
 			return nullptr;
 
-		const auto base = reinterpret_cast< uint8_t* >( module_info->image_base );
-		const auto size = module_info->image_size;
+		const auto base = reinterpret_cast< uint8_t* >( module_info.image_base );
+		const auto size = module_info.image_size;
 
 		if ( !base || !size )
 			return nullptr;
