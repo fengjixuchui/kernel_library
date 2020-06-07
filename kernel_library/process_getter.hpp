@@ -17,7 +17,7 @@ namespace impl
 		
 		static const auto PsGetNextProcess = resolve_call< PEPROCESS( * )( PEPROCESS )>( resolve_jxx( relative_sig ) );
 
-		static const auto EtwpIsProcessZombie = reinterpret_cast< bool( * )( PEPROCESS )>( scan_for_pattern_code(ntoskrnl, "\x8b\x81\x00\x00\x00\x00\xa8\x04\x75\x03", "xx????xxxx"));
+		static const auto EtwpIsProcessZombie = reinterpret_cast< bool( * )( PEPROCESS )>( scan_for_pattern_code(ntoskrnl, "\x8B\x81\x00\x00\x00\x00\xA8\x04\x75\x00\x33\xC0", "xx????xxx?xx"));
 
 		if ( !PsGetNextProcess || !EtwpIsProcessZombie)
 			return nullptr;
